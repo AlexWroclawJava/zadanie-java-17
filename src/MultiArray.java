@@ -1,20 +1,55 @@
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MultiArray {
-    public static void main(String[] args) {
 
-        MultiArrayMethods multiArrayMethods = new MultiArrayMethods();
-        System.out.println();
+    private int[][] Array;
 
-        int[][] tab = multiArrayMethods.randomize();
-        System.out.print("Wyświetlona tablica jest poniżej: ");
-        multiArrayMethods.print(tab);
+    public MultiArray(int N, int M) {
+        Array = new int[N][M];
+        Random random = new Random();
+        randomize();
+    }
 
-        System.out.print("\n\nNajwiększa wartość w tablicy to: ");
-        int max = multiArrayMethods.findMax(tab);
-        System.out.println(max);
+    public void randomize() {
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                Array[i][j] = random.nextInt(100);
+            }
+        }
+    }
 
-        System.out.print("\nNajmniejsza wartość w tablicy to: ");
-        int min = multiArrayMethods.findMin(tab);
-        System.out.println(min);
+    public int findMin() {
+        int min = Array[0][0];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (Array[i][j] < min)
+                    min = Array[i][j];
+            }
+        }
+        return min;
+    }
+
+    public int findMax() {
+        int max = Array[0][0];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (Array[i][j] > max)
+                    max = Array[i][j];
+            }
+        }
+        return max;
+    }
+
+    void print() {
+        for (int i = 0; i < 6; i++) {
+            System.out.println();
+            for (int j = 0; j < 6; j++) {
+                System.out.print(Array[i][j] + " ");
+            }
+        }
     }
 }
+
+
